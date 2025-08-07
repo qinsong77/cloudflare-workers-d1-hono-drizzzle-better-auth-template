@@ -1,5 +1,8 @@
 # Cloudflare workers, D1, Hono, drizzle, better-auth template
 
+For React native, the client integrate with the better-auth, refer: [RN-Expo-Starter
+Public template](https://github.com/qinsong77/RN-Expo-Starter/tree/gluestack-better-auth)
+
 ### 1. install dependencies
 
 ```shell
@@ -8,7 +11,7 @@ bun i
 
 ### 2.Update wrangle configs and .dev.vars
 
-#### 2.Create D1 database
+#### 2.1 Create D1 database
 
 Create on cloudflare web dashboard or:
 
@@ -37,7 +40,7 @@ Then you can run `bun run typegen:cf` to generate/overwrite your `worker-configu
 
 #### 3. Generate schema and migration sql - skip
 
-The template had generated.
+The template had generated, you can skip or re-run to overwrite.
 
 ```shell
 bun run better-auth-gen-schema # generate better-auth table schema, if you updated `better-auth.config.ts`, need to run again to update/overwrite
@@ -47,8 +50,8 @@ bun run db:generate # generate migration sql
 #### 4. Migrate D1 database
 
 ```shell
-bun run db:apply db-name --local # for local db, this also will create local db in `.wrangler` if not existed
-bun run db:apply db-name --remote        # for cf db
+bun run db:apply db-name --local   # for local db, this also will create local db in `.wrangler` if not existed
+bun run db:apply db-name --remote  # for cf db
 ```
 
 #### 5. Run project locally

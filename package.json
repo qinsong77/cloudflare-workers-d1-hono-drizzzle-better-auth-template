@@ -3,7 +3,7 @@
   "scripts": {
     "prepare": "husky",
     "typegen:cf": "wrangler types",
-    "type-check": "bun run typegen:cf && tsc --noEmit && echo \"Types check passed\"",
+    "type-check": "tsc --noEmit && echo \"Types check passed\"",
     "better-auth-gen-schema": "bunx @better-auth/cli@latest generate --config ./better-auth.config.ts --output ./server/d1/schema/auth.sql.ts",
     "db:generate": "drizzle-kit generate",
     "db:apply": "wrangler d1 migrations apply",
