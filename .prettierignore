@@ -1,0 +1,10 @@
+.vscode
+.idea
+.husky
+native
+
+.wrangler
+worker-configuration.d.ts
+drizzle_migrations
+wrangler.jsonc
+server/d1/schema/auth.sql.ts

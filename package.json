@@ -1,0 +1,46 @@
+{
+  "name": "cloudflare-workers-d1-hono-drizzzle-better-auth-template",
+  "scripts": {
+    "prepare": "husky",
+    "typegen:cf": "wrangler types",
+    "type-check": "bun run typegen:cf && tsc --noEmit && echo \"Types check passed\"",
+    "better-auth-gen-schema": "bunx @better-auth/cli@latest generate --config ./better-auth.config.ts --output ./server/d1/schema/auth.sql.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:apply": "wrangler d1 migrations apply",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy --minify",
+    "format": "prettier . --check",
+    "format:fix": "prettier '**/*.{js,jsx,ts,tsx,json,md}' --write",
+    "lint": "eslint .",
+    "lint-and-format:fix": "eslint server --fix && prettier . --write"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,jsx}": "eslint",
+    "*.{js,css,md,ts,tsx,jsx}": "prettier --write"
+  },
+  "dependencies": {
+    "@eslint/js": "^9.32.0",
+    "@hono/zod-validator": "^0.7.2",
+    "better-auth": "^1.3.4",
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4",
+    "drizzle-zod": "^0.8.3",
+    "eslint": "^9.32.0",
+    "hono": "^4.8.12",
+    "kysely-d1": "^0.4.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0",
+    "zod": "^4.0.15"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/types": "^19.8.1",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "drizzle-kit": "^0.31.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.4",
+    "prettier": "^3.6.2",
+    "wrangler": "^4.28.0"
+  }
+}
