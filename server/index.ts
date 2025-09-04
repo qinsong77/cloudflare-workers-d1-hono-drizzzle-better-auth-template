@@ -8,8 +8,9 @@ import { getAuth } from './lib/better-auth'
 import { dbMiddleware } from './middleware/db'
 import authors from './routes/authors'
 import books from './routes/books'
+import { AppType } from './type/hono-app'
 
-const app = new Hono()
+const app = new Hono<AppType>()
 
 app.onError((err, c) => {
   console.error(`${err}`)

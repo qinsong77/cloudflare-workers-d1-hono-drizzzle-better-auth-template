@@ -1,3 +1,4 @@
+import type { Context } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { HTTPException } from 'hono/http-exception'
 
@@ -6,7 +7,7 @@ import type { AuthedAppType } from '~server/type/hono-app'
 
 export const authMiddleware = createMiddleware<AuthedAppType>(
   async (c, next) => {
-    const session = await getAuth(c).api.getSession({
+    const session = await getAuth(c as Context).api.getSession({
       headers: c.req.raw.headers,
     })
 
