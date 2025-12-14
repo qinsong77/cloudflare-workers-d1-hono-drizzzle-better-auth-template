@@ -16,7 +16,7 @@ bun i
 Create on cloudflare web dashboard or:
 
 ```shell
-bun wrangler d1 creat db-name         # for cf db
+bun wrangler d1 create db-name         # for cf db
 ```
 
 - update `wrangler.jsonc` and configure it based on your project, currently the d1 configuration is required:
