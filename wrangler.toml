@@ -1,0 +1,29 @@
+# $schema: node_modules/wrangler/config-schema.json
+name = "cf-worker-template"
+main = "src/index.ts"
+compatibility_date = "2025-08-13"
+compatibility_flags = [ "nodejs_compat" ]
+
+# [vars]
+# MY_VAR = "my-variable"
+#
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "xx"
+#
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "my-bucket"
+
+[[d1_databases]]
+binding = "D1"
+database_name = "cf-worker-template"
+database_id = "your-database-id"
+migrations_dir = "drizzle_migrations/d1"
+
+# [ai]
+# binding = "AI"
+#
+# [observability]
+# enabled = true
+# head_sampling_rate = 1

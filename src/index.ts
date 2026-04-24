@@ -4,10 +4,9 @@ import { HTTPException } from 'hono/http-exception'
 import { logger } from 'hono/logger'
 import { requestId } from 'hono/request-id'
 
-import { getAuth } from './lib/better-auth'
-import { dbMiddleware } from './middleware/db'
-import authors from './routes/authors'
+import { auth } from './lib/better-auth'
 import books from './routes/books'
+import user from './routes/user'
 import { AppType } from './type/hono-app'
 
 const app = new Hono<AppType>()
@@ -22,23 +21,20 @@ app.onError((err, c) => {
 
 app.use('*', requestId())
 app.use(contextStorage())
-app.use(dbMiddleware)
 
-app.get('/', (c) => {
-  return c.text('Hello World!')
+app.get('/', (c) => c.json('hello world'))
+app.get('/health', (c) => {
+  return c.json({ status: 'ok' })
 })
 
 app.use('/api/*', logger())
 
 app.on(['GET', 'POST'], '/api/auth/*', (c) => {
-  return getAuth(c).handler(c.req.raw)
+  return auth.handler(c.req.raw)
 })
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const routes = app
-  .basePath('/api')
-  .route('/authors', authors)
-  .route('/books', books)
+const routes = app.basePath('/api').route('/user', user).route('/books', books)
 
 export type AppClientType = typeof routes
 

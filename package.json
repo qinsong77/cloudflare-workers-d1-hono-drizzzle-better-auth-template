@@ -1,46 +1,52 @@
 {
   "name": "cloudflare-workers-d1-hono-drizzzle-better-auth-template",
+  "version": "0.2.0",
   "scripts": {
     "prepare": "husky",
     "typegen:cf": "wrangler types",
     "type-check": "tsc --noEmit && echo \"Types check passed\"",
-    "better-auth-gen-schema": "bunx @better-auth/cli@latest generate --config ./better-auth.config.ts --output ./server/d1/schema/auth.sql.ts",
+    "better-auth-gen-schema": "bunx auth@latest generate --config ./better-auth.config.ts --output src/d1/schema/auth.sql.ts",
     "db:generate": "drizzle-kit generate",
     "db:apply": "wrangler d1 migrations apply",
+    "db:studio:dev": "export LOCAL_DB_PATH=$(find .wrangler/state/v3/d1/miniflare-D1DatabaseObject -type f -name '*.sqlite' -print0 | xargs -0 ls -t | head -1) && drizzle-kit studio --config=drizzle.config.ts",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
+    "deploy:verify": "bunx wrangler deploy --dry-run",
     "format": "prettier . --check",
     "format:fix": "prettier '**/*.{js,jsx,ts,tsx,json,md}' --write",
     "lint": "eslint .",
-    "lint-and-format:fix": "eslint server --fix && prettier . --write"
+    "lint-and-format:fix": "eslint src --fix && prettier . --write"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": "eslint",
     "*.{js,css,md,ts,tsx,jsx}": "prettier --write"
   },
   "dependencies": {
-    "@hono/zod-validator": "^0.7.5",
-    "better-auth": "^1.4.7",
-    "dotenv": "^17.2.3",
-    "drizzle-orm": "^0.45.1",
+    "@better-auth/expo": "^1.6.8",
+    "@hono/zod-validator": "^0.7.6",
+    "better-auth": "^1.6.8",
+    "dotenv": "^17.4.2",
+    "drizzle-orm": "^0.45.2",
     "drizzle-zod": "^0.8.3",
-    "hono": "^4.11.0",
+    "hono": "^4.12.14",
     "kysely-d1": "^0.4.0",
-    "typescript": "^5.9.3",
-    "zod": "^4.1.13"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.2.0",
-    "@commitlint/config-conventional": "^20.2.0",
-    "@commitlint/types": "^20.2.0",
-    "@eslint/js": "^9.39.2",
-    "@trivago/prettier-plugin-sort-imports": "^6.0.0",
-    "drizzle-kit": "^0.31.8",
-    "eslint": "^9.39.2",
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "@commitlint/types": "^20.5.0",
+    "@eslint/js": "^10.0.1",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
+    "@types/node": "^25.6.0",
+    "better-sqlite3": "^12.9.0",
+    "drizzle-kit": "^0.31.10",
+    "eslint": "^10.2.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.7.4",
-    "typescript-eslint": "^8.49.0",
-    "wrangler": "^4.54.0"
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.0",
+    "wrangler": "4.29.1"
   }
 }

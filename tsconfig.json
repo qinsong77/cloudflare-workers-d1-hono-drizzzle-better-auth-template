@@ -6,9 +6,9 @@
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext"],
-    "types": ["./worker-configuration.d.ts"],
+    "types": ["./worker-configuration.d.ts", "node"],
     "paths": {
-      "~server/*": ["./server/*"]
+      "~/*": ["./src/*"]
     }
   }
 }

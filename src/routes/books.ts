@@ -1,8 +1,9 @@
 import { Hono } from 'hono'
 
-import { authMiddleware } from '~server/middleware/auth'
+import { authMiddleware } from '~/middleware/auth'
+import { AuthedAppType } from '~/type/hono-app'
 
-const app = new Hono()
+const app = new Hono<AuthedAppType>()
   .use('*', authMiddleware)
   .get('/', (c) => c.json('list books'))
   .post('/', (c) => c.json('create a book', 201))

@@ -10,7 +10,7 @@
   "singleAttributePerLine": true,
   "endOfLine": "lf",
   "plugins": ["@trivago/prettier-plugin-sort-imports"],
-  "importOrder": ["^~server/(.*)$", "^[./]"],
+  "importOrder": ["^~/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

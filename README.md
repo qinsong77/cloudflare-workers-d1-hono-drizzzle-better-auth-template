@@ -3,6 +3,8 @@
 For React native, the client integrate with the better-auth, refer: [RN-Expo-Starter
 Public template](https://github.com/qinsong77/RN-Expo-Starter/tree/gluestack-better-auth)
 
+## Get started
+
 ### 1. install dependencies
 
 ```shell
@@ -16,10 +18,10 @@ bun i
 Create on cloudflare web dashboard or:
 
 ```shell
-bun wrangler d1 create db-name         # for cf db
+bunx wrangler d1 create db-name         # for cf db
 ```
 
-- update `wrangler.jsonc` and configure it based on your project, currently the d1 configuration is required:
+- update `wrangler.toml` and configure it based on your project, currently the d1 configuration is required:
 
 ```json
 {
@@ -67,3 +69,7 @@ Check `http://localhost:8787/api/auth/reference` for better auth apis.
 ```shell
 bun deplpy
 ```
+
+## Notes
+
+1. `wrangler` fixed version to `4.29.1`, updated it will case error: `ERROR [Better Auth]: BetterAuthError [BetterAuthError: [# Drizzle Adapter]: The model "users" was not found in the schema object. Please pass the schema directly to the adapter options.]`

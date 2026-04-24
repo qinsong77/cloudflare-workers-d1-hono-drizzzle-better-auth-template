@@ -3,7 +3,7 @@ import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config({
-  files: ['./server/**/*.ts', './server/**/*.tsx'],
+  files: ['./src/**/*.ts', './src/**/*.tsx'],
   extends: [
     eslint.configs.recommended,
     tseslint.configs.strict,

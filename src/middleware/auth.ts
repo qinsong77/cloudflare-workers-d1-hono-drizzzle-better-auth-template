@@ -1,13 +1,12 @@
-import type { Context } from 'hono'
 import { createMiddleware } from 'hono/factory'
 import { HTTPException } from 'hono/http-exception'
 
-import { getAuth } from '~server/lib/better-auth'
-import type { AuthedAppType } from '~server/type/hono-app'
+import { auth } from '~/lib/better-auth'
+import type { AuthedAppType } from '~/type/hono-app'
 
 export const authMiddleware = createMiddleware<AuthedAppType>(
   async (c, next) => {
-    const session = await getAuth(c as Context).api.getSession({
+    const session = await auth.api.getSession({
       headers: c.req.raw.headers,
     })
 
